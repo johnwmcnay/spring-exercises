@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:include="partials/partials :: head">
     <title>Shake and Roll</title>
 </head>
 <body>
-
+<nav th:replace="partials/partials :: navbar"></nav>
 <h4>Make a guess for a 1d6 roll!</h4>
 
 <div th:each="side : ${list}">
@@ -32,4 +31,5 @@
 
 </div>
 </body>
+<footer th:replace="partials/partials :: footer"></footer>
 </html>
