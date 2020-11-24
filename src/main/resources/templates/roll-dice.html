@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shake and Roll</title>
+</head>
+<body>
+
+<h4>Make a guess for a 1d6 roll!</h4>
+
+<div th:each="side : ${list}">
+<!--    @{/order/details(id=${orderId},type=${orderType})}-->
+<form th:action="@{/roll-dice/{side}(side=${side})}" method="post">
+    <button type="submit" th:text="${side}"></button>
+</form>
+
+</div>
+<div th:if="${guess} != null">
+    You guessed <span th:text="${guess}"></span> and the die came up <span th:text="${roll}"></span>!
+
+    <div th:if="${roll == guess}">
+        <span>Wow! You got it right!</span>
+    </div>
+    <div th:if="${roll != guess}">
+        <span>Oh well, better luck next time.</span>
+    </div>
+
+    <form th:action="@{/roll-dice}" method="get">
+        <button type="submit">Play again?</button>
+    </form>
+
+
+</div>
+</body>
+</html>
