@@ -1,28 +1,40 @@
 package com.example.springtest.controllers;
 
+import com.example.springtest.models.Post;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 public class PostController {
-//    GET	/posts	posts index page
-//    GET	/posts/{id}	view an individual post
-//    GET	/posts/create	view the form for creating a post
-//    POST	/posts/create	create a new post
 
     @GetMapping("/posts")
-    @ResponseBody
-    public String index() {
-        return "posts index page";
+    public String index(Model model) {
+
+        List<Post> posts = new ArrayList<>(Arrays.asList(
+                new Post("title1", "body1"),
+                new Post("title2", "body2")
+        ));
+
+        model.addAttribute("posts", posts);
+
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String viewPost(@PathVariable int id) {
-        return "view and individual post: " + id;
+    public String viewPost(@PathVariable int id, Model model) {
+
+        Post post = new Post("title individual", "body individual");
+        model.addAttribute("post", post);
+
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
