@@ -6,10 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 @Controller
 public class PostController {
 
@@ -22,13 +18,6 @@ public class PostController {
     @GetMapping("/posts")
     public String index(Model model) {
 
-        List<Post> posts = new ArrayList<>(Arrays.asList(
-                new Post("title1", "body1"),
-                new Post("title2", "body2")
-        ));
-
-        System.out.println("postDao.findAll() = " + postDao.findAll());
-
         model.addAttribute("posts", postDao.findAll());
 
         return "posts/index";
@@ -38,6 +27,7 @@ public class PostController {
     public String viewPost(@PathVariable Long id, Model model) {
 
         model.addAttribute("post", postDao.findByIdEquals(id));
+        model.addAttribute("id", id);
 
         return "posts/show";
     }
@@ -47,22 +37,29 @@ public class PostController {
         return "/posts/form";
     }
 
+    @GetMapping("/posts/edit")
+    public String editForm() {
+        return "/posts/edit";
+    }
+
     @PostMapping("/posts/create")
     public String createPost(
             @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body)
-    {
+            @RequestParam(name = "body") String body) {
         Post post = new Post(title, body);
-
-        System.out.println("post = " + post);
-
         Post dbPost = postDao.save(post);
-
-        System.out.println("dbPost = " + dbPost);
-        System.out.println("dbPost.getId() = " + dbPost.getId());
 
         return "redirect:/posts/" + dbPost.getId().toString();
 
+    }
+
+    @PostMapping("/posts/delete")
+    public String deletePost(
+            @RequestParam(name = "id") Long id) {
+
+        postDao.delete(postDao.findByIdEquals(id));
+
+        return "redirect:/posts";
     }
 
 }

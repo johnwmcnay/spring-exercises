@@ -8,5 +8,16 @@
 
 <h3 th:text="${post.title}"></h3>
 <p th:text="${post.body}"></p>
+
+<form th:action="@{/posts/edit}" th:method="get">
+    <input th:type="hidden" th:name="id" th:value="${post.id}">
+    <input th:type="submit" th:value="Edit">
+</form>
+
+<form th:action="@{/posts/delete}" th:method="post">
+    <input th:type="hidden" th:name="id" th:value="${post.id}">
+    <input th:type="submit" th:value="Delete">
+</form>
+
 </body>
 </html>
