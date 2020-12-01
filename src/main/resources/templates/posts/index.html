@@ -5,8 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+
 <div th:each="post : ${posts}">
-    <h3 th:text="${post.title}"></h3>
+    <a th:href="@{/posts/{post}(post=${post.id})}"><h3 th:text="${post.title}"></h3></a>
     <p th:text="${post.body}"></p>
 </div>
 </body>
