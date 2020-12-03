@@ -15,6 +15,10 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
+    @ManyToOne
+    @JoinColumn (name = "users_id")
+    private User user;
+
     public Post(Long id, String title, String body) {
         this.id = id;
         this.title = title;

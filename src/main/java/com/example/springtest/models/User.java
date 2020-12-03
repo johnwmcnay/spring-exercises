@@ -1,10 +1,14 @@
 package com.example.springtest.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
 public class User {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
+    private List<User> users;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
