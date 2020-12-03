@@ -8,6 +8,7 @@
 
 <h3 th:text="${post.title}"></h3>
 <p th:text="${post.body}"></p>
+<span th:text="${user.email}"></span>
 
 <form th:action="@{/posts/edit}" th:method="get">
     <input th:type="hidden" th:name="id" th:value="${post.id}">

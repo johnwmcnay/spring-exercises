@@ -1,7 +1,9 @@
 package com.example.springtest.controllers;
 
 import com.example.springtest.models.Post;
+import com.example.springtest.models.User;
 import com.example.springtest.repositories.PostRepository;
+import com.example.springtest.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +12,12 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao)
+    {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -26,8 +31,11 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable Long id, Model model) {
 
-        model.addAttribute("post", postDao.findByIdEquals(id));
+        Post post = postDao.findByIdEquals(id);
+
+        model.addAttribute("post", post);
         model.addAttribute("id", id);
+        model.addAttribute("user", userDao.findByIdEquals(post.getUser().getId()));
 
         return "posts/show";
     }
@@ -62,7 +70,9 @@ public class PostController {
     public String createPost(
             @RequestParam(name = "title") String title,
             @RequestParam(name = "body") String body) {
-        Post post = new Post(title, body);
+        User user = userDao.findByIdEquals(1L);
+
+        Post post = new Post(title, body, user);
         Post dbPost = postDao.save(post);
 
         return "redirect:/posts/" + dbPost.getId().toString();
