@@ -1,25 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create a new post</title>
+    <title th:text="${pageTitle}"></title>
 </head>
 <body>
-<h3>Make a post</h3>
-<form th:action="@{/posts/create}" th:method="post">
-    <label>Title
-        <input th:type="text" th:name="title" th:id="title">
-    </label>
-
-    <label>Body
-        <input th:type="text" th:name="body" th:id="body">
-    </label>
-
-    <label>
-        <input th:type="submit">
-    </label>
-
-
+<form th:action="${action}" th:method="post" th:object="${post}">
+    Title:
+    <input th:field="*{title}"/>
+    <br/>
+    Description:
+    <input th:field="*{body}">
+    <br/>
+    <input type="submit"/>
 </form>
 </body>
 </html>

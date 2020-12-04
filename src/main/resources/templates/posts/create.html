@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${pageTitle}"></title>
 </head>
 <body>
-<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+<form th:action="${action}" th:method="post" th:object="${post}">
     Title:
-    <input th:field="*{title}"/>
+    <input th:field="*{title}" th:value="${postTitle}"/>
     <br/>
     Description:
-    <input th:field="*{body}"/>
+    <input th:field="*{body}" th:value="${postBody}">
     <br/>
     <input type="submit"/>
 </form>

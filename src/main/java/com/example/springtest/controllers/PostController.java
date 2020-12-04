@@ -40,14 +40,18 @@ public class PostController {
         return "posts/show";
     }
 
-    @GetMapping("/posts/form")
+    @GetMapping("/posts/create")
     public String postForm(Model model) {
 
         Post post = new Post();
 
         model.addAttribute("post", post);
+        model.addAttribute("action", "/posts/create");
+        model.addAttribute("pageTitle", "Create a post");
+        model.addAttribute("postTitle", "");
+        model.addAttribute("postBody", "");
 
-        return "/posts/create";
+        return "/posts/form";
     }
 
     @GetMapping("/posts/{id}/edit")
@@ -55,30 +59,31 @@ public class PostController {
             @PathVariable(name = "id") Long id,
             Model model) {
 
-        model.addAttribute("post", postDao.findByIdEquals(id));
+        Post post = postDao.findByIdEquals(id);
+        model.addAttribute("action", "/posts/" + id.toString() + "/edit");
+        model.addAttribute("pageTitle", "Edit your post");
+        model.addAttribute("post", post);
 
-        return "/posts/edit";
+        return "/posts/form";
     }
 
     @PostMapping("/posts/{id}/edit")
     public String updatePost(
             @PathVariable(name = "id") Long id,
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body) {
+            @ModelAttribute Post post) {
 
-        Post post = new Post(id, title, body, userDao.findByIdEquals(1L));
+        post.setUser(userDao.findByIdEquals(1L));
+        post.setId(id);
         postDao.save(post);
         return "redirect:/posts/" + id.toString();
     }
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        User user = userDao.findByIdEquals(1L);
-        post.setUser(user);
+        post.setUser(userDao.findByIdEquals(1L));
         Post dbPost = postDao.save(post);
 
         return "redirect:/posts/" + dbPost.getId().toString();
-
     }
 
     @PostMapping("/posts/delete")
