@@ -41,13 +41,18 @@ public class PostController {
     }
 
     @GetMapping("/posts/form")
-    public String postForm() {
-        return "/posts/form";
+    public String postForm(Model model) {
+
+        Post post = new Post();
+
+        model.addAttribute("post", post);
+
+        return "/posts/create";
     }
 
-    @GetMapping("/posts/edit")
+    @GetMapping("/posts/{id}/edit")
     public String editForm(
-            @RequestParam(name = "id") Long id,
+            @PathVariable(name = "id") Long id,
             Model model) {
 
         model.addAttribute("post", postDao.findByIdEquals(id));
@@ -55,24 +60,21 @@ public class PostController {
         return "/posts/edit";
     }
 
-    @PostMapping("/posts/edit")
+    @PostMapping("/posts/{id}/edit")
     public String updatePost(
-            @RequestParam(name = "id") Long id,
+            @PathVariable(name = "id") Long id,
             @RequestParam(name = "title") String title,
             @RequestParam(name = "body") String body) {
 
-        Post post = new Post(id, title, body);
+        Post post = new Post(id, title, body, userDao.findByIdEquals(1L));
         postDao.save(post);
         return "redirect:/posts/" + id.toString();
     }
 
     @PostMapping("/posts/create")
-    public String createPost(
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body) {
+    public String createPost(@ModelAttribute Post post) {
         User user = userDao.findByIdEquals(1L);
-
-        Post post = new Post(title, body, user);
+        post.setUser(user);
         Post dbPost = postDao.save(post);
 
         return "redirect:/posts/" + dbPost.getId().toString();

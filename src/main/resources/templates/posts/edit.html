@@ -6,9 +6,7 @@
 </head>
 <body>
 <h3>Edit your post</h3>
-<form th:action="@{/posts/edit}" th:method="post">
-    <input th:type="hidden" th:name="id" th:value="${post.id}">
-
+<form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="post">
     <label>Title
         <input th:type="text" th:name="title" th:id="title" th:value="${post.title}">
     </label>

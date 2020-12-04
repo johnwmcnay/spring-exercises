@@ -16,13 +16,14 @@ public class Post {
     private String body;
 
     @ManyToOne
-    @JoinColumn (name = "users_id")
+    @JoinColumn (name = "users_id", nullable = false)
     private User user;
 
-    public Post(Long id, String title, String body) {
+    public Post(Long id, String title, String body, User user) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.user = user;
     }
 
     public Post(String title, String body, User user) {
