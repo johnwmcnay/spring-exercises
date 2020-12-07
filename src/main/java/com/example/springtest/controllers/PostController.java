@@ -13,11 +13,13 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao)
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService)
     {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -82,6 +84,7 @@ public class PostController {
     public String createPost(@ModelAttribute Post post) {
         post.setUser(userDao.findByIdEquals(1L));
         Post dbPost = postDao.save(post);
+        this.emailService.prepareAndSend(post, "You made a new post: " + post.getTitle(), "This is to notify you of your new post.");
 
         return "redirect:/posts/" + dbPost.getId().toString();
     }
