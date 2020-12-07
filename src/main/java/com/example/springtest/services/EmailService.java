@@ -1,4 +1,4 @@
-package com.example.springtest.controllers;
+package com.example.springtest.services;
 
 import com.example.springtest.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;

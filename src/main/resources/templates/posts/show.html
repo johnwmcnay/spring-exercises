@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Single Post</title>
 </head>
 <body>
-
+<nav th:replace="partials/partials :: navbar"></nav>
 <h3 th:text="${post.title}"></h3>
 <p th:text="${post.body}"></p>
 <span th:text="${user.email}"></span>
@@ -18,6 +19,6 @@
     <input th:type="hidden" th:name="id" th:value="${post.id}">
     <input th:type="submit" th:value="Delete">
 </form>
-
+<footer th:include="partials/partials :: footer"></footer>
 </body>
 </html>

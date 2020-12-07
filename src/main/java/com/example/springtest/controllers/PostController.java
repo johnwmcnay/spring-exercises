@@ -4,6 +4,8 @@ import com.example.springtest.models.Post;
 import com.example.springtest.models.User;
 import com.example.springtest.repositories.PostRepository;
 import com.example.springtest.repositories.UserRepository;
+import com.example.springtest.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +76,9 @@ public class PostController {
             @PathVariable(name = "id") Long id,
             @ModelAttribute Post post) {
 
-        post.setUser(userDao.findByIdEquals(1L));
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        post.setUser(user);
         post.setId(id);
         postDao.save(post);
         return "redirect:/posts/" + id.toString();
@@ -82,7 +86,11 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        post.setUser(userDao.findByIdEquals(1L));
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        post.setUser(user);
+
         Post dbPost = postDao.save(post);
         this.emailService.prepareAndSend(post, "You made a new post: " + post.getTitle(), "This is to notify you of your new post.");
 

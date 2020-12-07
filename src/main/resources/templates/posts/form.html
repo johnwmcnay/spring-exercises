@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title th:text="${pageTitle}"></title>
 </head>
 <body>
+<nav th:replace="partials/partials :: navbar"></nav>
 <form th:action="${action}" th:method="post" th:object="${post}">
     Title:
     <input th:field="*{title}"/>
@@ -14,5 +16,6 @@
     <br/>
     <input type="submit"/>
 </form>
+<footer th:include="partials/partials :: footer"></footer>
 </body>
 </html>
