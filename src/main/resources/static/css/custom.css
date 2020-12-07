@@ -1,0 +1,24 @@
+
+:root {
+    --reddish: #961C1C;
+    --greenish: #5D8B1F;
+    --grayish: #89726e;
+    --other: #BEA6A1;
+}
+
+html, body {
+    background-color: var(--grayish);
+}
+
+a {
+    color: var(--reddish);
+}
+
+nav {
+    background-color: var(--greenish);
+}
+
+.post {
+    background-color: var(--other);
+    color: black;
+}

@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head th:include="partials/partials :: head">
     <meta charset="UTF-8">
     <title th:text="${pageTitle}"></title>
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
-<form th:action="${action}" th:method="post" th:object="${post}">
-    Title:
-    <input th:field="*{title}"/>
-    <br/>
-    Description:
-    <input th:field="*{body}">
-    <br/>
-    <input type="submit"/>
-</form>
+
+
+<div class="container">
+
+    <form th:action="${action}" th:method="post" th:object="${post}">
+        <div class="form-group">
+            <label>Title
+                <input th:field="*{title}" class="form-control">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Description
+                <textarea class="form-control" th:field="*{body}"></textarea>
+            </label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+
+<!--    <form th:action="${action}" th:method="post" th:object="${post}">-->
+<!--        Title:-->
+<!--        <input th:field="*{title}"/>-->
+<!--        <br/>-->
+<!--        Description:-->
+<!--        <input th:field="*{body}">-->
+<!--        <br/>-->
+<!--        <input type="submit"/>-->
+<!--    </form>-->
+</div>
 <footer th:include="partials/partials :: footer"></footer>
 </body>
 </html>
