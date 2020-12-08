@@ -55,7 +55,7 @@ public class PostController {
         model.addAttribute("postTitle", "");
         model.addAttribute("postBody", "");
 
-        return "/posts/form";
+        return "posts/form";
     }
 
     @GetMapping("/posts/{id}/edit")
@@ -68,7 +68,7 @@ public class PostController {
         model.addAttribute("pageTitle", "Edit your post");
         model.addAttribute("post", post);
 
-        return "/posts/form";
+        return "posts/form";
     }
 
     @PostMapping("/posts/{id}/edit")
