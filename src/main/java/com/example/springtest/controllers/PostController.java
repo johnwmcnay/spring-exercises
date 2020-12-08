@@ -97,9 +97,9 @@ public class PostController {
         return "redirect:/posts/" + dbPost.getId().toString();
     }
 
-    @PostMapping("/posts/delete")
+    @PostMapping("/posts/{id}/delete")
     public String deletePost(
-            @RequestParam(name = "id") Long id) {
+            @PathVariable(name = "id") Long id) {
 
         postDao.delete(postDao.findByIdEquals(id));
 

@@ -15,8 +15,7 @@
     <input th:type="submit" th:value="Edit">
 </form>
 
-<form th:action="@{/posts/delete}" th:method="post">
-    <input th:type="hidden" th:name="id" th:value="${post.id}">
+<form th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post">
     <input th:type="submit" th:value="Delete">
 </form>
 <footer th:include="partials/partials :: footer"></footer>
