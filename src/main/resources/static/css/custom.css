@@ -1,13 +1,15 @@
 
 :root {
     --reddish: #961C1C;
-    --greenish: #5D8B1F;
-    --grayish: #89726e;
-    --other: #BEA6A1;
+    /*--greenish: #5D8B1F;*/
+    --faded: #AE6D62;
+    --lighter: #FFE5DC;
+    /*--grayish: #89726e;*/
+    --blueish: #8BA1FF;
 }
 
 html, body {
-    background-color: var(--grayish);
+    background-color: var(--faded);
 }
 
 a {
@@ -15,10 +17,10 @@ a {
 }
 
 nav {
-    background-color: var(--greenish);
+    background-color: var(--blueish);
 }
 
 .post {
-    background-color: var(--other);
+    background-color: var(--lighter);
     color: black;
 }

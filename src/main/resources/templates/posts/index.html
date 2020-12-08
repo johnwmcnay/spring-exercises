@@ -9,14 +9,15 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 <div class="container">
-        <div class="m-3 card rounded post" th:each="post : ${posts}">
-            <div class="card-body p-2">
-                <a th:href="@{/posts/{post}(post=${post.id})}"><h3 th:text="${post.title}"></h3></a>
-            </div>
-            <div class="card-text">
-                <p class="m-2" th:text="${post.body}"></p>
-            </div>
+    <a th:href="@{/posts/create}" class="text-center">Create a post</a>
+    <div class="m-3 card rounded post" th:each="post : ${posts}">
+        <div class="card-body p-2">
+            <a th:href="@{/posts/{post}(post=${post.id})}"><h3 th:text="${post.title}"></h3></a>
         </div>
+        <div class="card-text">
+            <p class="m-2" th:text="${post.body}"></p>
+        </div>
+    </div>
 </div>
 </body>
 <footer th:include="partials/partials :: footer"></footer>
