@@ -17,8 +17,7 @@ public class PostController {
     private final UserRepository userDao;
     private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService)
-    {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.emailService = emailService;
@@ -78,9 +77,12 @@ public class PostController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        post.setUser(user);
-        post.setId(id);
-        postDao.save(post);
+        if (user != null) {
+            post.setUser(user);
+            post.setId(id);
+            postDao.save(post);
+        }
+
         return "redirect:/posts/" + id.toString();
     }
 
