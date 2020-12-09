@@ -101,7 +101,11 @@ public class PostController {
     public String deletePost(
             @PathVariable(name = "id") Long id) {
 
-        postDao.delete(postDao.findByIdEquals(id));
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (user.getId().equals(id)) {
+            postDao.delete(postDao.findByIdEquals(id));
+        }
 
         return "redirect:/posts";
     }

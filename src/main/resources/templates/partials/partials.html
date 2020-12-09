@@ -3,28 +3,42 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
 </head>
 <body>
-<nav th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg row" th:fragment="navbar">
+
+    <div class="row col-6 align-items-center">
         <a class="navbar-brand" href="/posts">Another Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/sign-up}">Register</a>
-                <a class="nav-item nav-link" th:href="@{/login}">Login</a>
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="nav-item nav-link" style="border: none; background-color: inherit; color: var(--reddish)">Logout</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+        <form th:method="get" th:action="@{/posts}">
+            <input class="m-0" type="text" name="search">
+            <input type="submit" value="Search">
+        </form>
+    </div>
 
-    <!--    <div sec:authorize="isAuthenticated()">-->
+
+
+    <div class="collapse navbar-collapse col-6 justify-content-end" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a sec:authorize="!isAuthenticated()" class="nav-item nav-link" th:href="@{/sign-up}">Register</a>
+            <a sec:authorize="!isAuthenticated()" class="nav-item nav-link" th:href="@{/login}">Login</a>
+
+            <form th:action="@{/logout}" th:method="post">
+                <button sec:authorize="isAuthenticated()" class="nav-item nav-link"
+                        style="border: none; background-color: inherit; color: var(--reddish)">Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!--    <div sec:authorize="isAuthenticated()">-->
 <!--        This content is only shown to authenticated users.-->
 
 <!--        User ID: <span th:text="${#authentication.principal.id}"/>-->

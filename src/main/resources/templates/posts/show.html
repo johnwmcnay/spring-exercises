@@ -11,13 +11,15 @@
 <p th:text="${post.body}"></p>
 <span th:text="${user.email}"></span>
 
-<form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="get">
-    <input th:type="submit" th:value="Edit">
-</form>
+<div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id==user.id}">
+    <form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="get">
+        <input th:type="submit" th:value="Edit">
+    </form>
 
-<form th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post">
-    <input th:type="submit" th:value="Delete">
-</form>
+    <form th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post">
+        <input th:type="submit" th:value="Delete">
+    </form>
+</div>
 <footer th:include="partials/partials :: footer"></footer>
 </body>
 </html>
