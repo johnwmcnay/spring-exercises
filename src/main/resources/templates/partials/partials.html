@@ -5,20 +5,21 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/6fa36e9c98.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg row" th:fragment="navbar">
 
     <div class="row col-6 align-items-center">
-        <a class="navbar-brand" href="/posts">Another Blog</a>
+        <a class="ml-3 navbar-brand" href="/posts">Another Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <form th:method="get" th:action="@{/posts}">
-            <input class="m-0" type="text" name="search">
-            <input type="submit" value="Search">
+            <input class="m-0 rounded" type="text" name="search" placeholder="Search">
+            <button class="search" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
 
@@ -30,9 +31,7 @@
             <a sec:authorize="!isAuthenticated()" class="nav-item nav-link" th:href="@{/login}">Login</a>
 
             <form th:action="@{/logout}" th:method="post">
-                <button sec:authorize="isAuthenticated()" class="nav-item nav-link"
-                        style="border: none; background-color: inherit; color: var(--reddish)">Logout
-                </button>
+                <button sec:authorize="isAuthenticated()" class="logout nav-item nav-link">Logout</button>
             </form>
         </div>
     </div>

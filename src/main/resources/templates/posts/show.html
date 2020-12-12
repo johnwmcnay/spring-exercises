@@ -7,19 +7,43 @@
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
-<h3 th:text="${post.title}"></h3>
-<p th:text="${post.body}"></p>
-<span th:text="${user.email}"></span>
 
-<div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id==user.id}">
-    <form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="get">
-        <input th:type="submit" th:value="Edit">
-    </form>
 
-    <form th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post">
-        <input th:type="submit" th:value="Delete">
-    </form>
+<div class="container justify-content-center">
+
+    <div class="post mt-4 rounded p-2">
+
+        <div class="ml-3">
+            <div class="row">
+                <div class="col-10">
+                    <h3 class="mb-0 mt-1" th:text="${post.title}" style="color: var(--reddish);"></h3>
+                </div>
+                <div class="col-2 justify-content-end">
+                    <div class="row justify-content-end mr-3" sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id==user.id}">
+                        <form class="d-inline-block" th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="get">
+                            <button class="edit-delete" type="submit"><i class="fas fa-edit"></i></button>
+                        </form>
+
+                        <form class="d-inline-block" th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post">
+                            <button class="edit-delete" type="submit"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- TODO: link to a user profile -->
+            <small >posted by: <span th:text="${user.username}"></span></small>
+        </div>
+
+        <div class="bg-white mx-5 rounded my-1" style="border: 2px solid var(--reddish)">
+            <p class="p-2" th:text="${post.body}"></p>
+        </div>
+
+    </div>
 </div>
+
+
+
+
 <footer th:include="partials/partials :: footer"></footer>
 </body>
 </html>

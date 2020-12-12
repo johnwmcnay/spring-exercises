@@ -16,6 +16,10 @@ a {
     color: var(--reddish);
 }
 
+a:hover {
+    color: midnightblue;
+}
+
 nav {
     background-color: var(--blueish);
 }
@@ -23,4 +27,48 @@ nav {
 .post {
     background-color: var(--lighter);
     color: black;
+}
+
+.edit-delete {
+    background: none;
+    border: none;
+    color: var(--reddish);
+}
+
+.edit-delete:hover {
+    color: var(--blueish);
+}
+
+.edit-delete:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.search {
+    background: none;
+    border: none;
+}
+
+.search:hover {
+    color: midnightblue;
+}
+
+.search:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.logout {
+    background: none;
+    border: none;
+    color: var(--reddish);
+}
+
+.logout:hover {
+    color: midnightblue;
+}
+
+.logout:focus {
+    outline: none;
+    box-shadow: none;
 }
