@@ -18,6 +18,7 @@ a {
 
 a:hover {
     color: midnightblue;
+    text-decoration: none;
 }
 
 nav {

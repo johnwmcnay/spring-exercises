@@ -27,9 +27,16 @@
 
     <div class="collapse navbar-collapse col-6 justify-content-end" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a sec:authorize="!isAuthenticated()" class="nav-item nav-link" th:href="@{/sign-up}">Register</a>
+            <a sec:authorize="!isAuthenticated()" class="nav-item nav-link" th:href="@{/sign-up}">Sign Up</a>
             <a sec:authorize="!isAuthenticated()" class="nav-item nav-link" th:href="@{/login}">Login</a>
 
+
+
+            <span class="nav-item nav-link" sec:authorize="isAuthenticated()">Hello, <span th:text="${#authentication.principal.username}"></span>!</span>
+            <a class="nav-item nav-link" sec:authorize="isAuthenticated()" th:href="@{/posts/create}">New Post <i class="fas fa-plus-circle"></i></a>
+            <form th:action="@{/profile}" th:method="get">
+                <button sec:authorize="isAuthenticated()" class="logout nav-item nav-link">Profile</button>
+            </form>
             <form th:action="@{/logout}" th:method="post">
                 <button sec:authorize="isAuthenticated()" class="logout nav-item nav-link">Logout</button>
             </form>
