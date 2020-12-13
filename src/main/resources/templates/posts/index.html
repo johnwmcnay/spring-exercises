@@ -17,7 +17,7 @@
             <a th:href="@{/posts/{post}(post=${post.id})}"><h3 class="m-0" th:text="${post.title}"></h3></a>
             <em><small>posted by: <span th:text="${post.user.username}"></span></small></em>
         </div>
-        <div class="card-text bg-white mx-5 rounded my-1 pb-2" style="border: 2px solid var(--reddish)">
+        <div class="card-text bg-white mx-sm-0 mx-md-2 mx-lg-5 rounded my-1 pb-2" style="border: 2px solid var(--reddish)">
             <p class="p-2" th:text="${post.body}"></p>
         </div>
     </div>

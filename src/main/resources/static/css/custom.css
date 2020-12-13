@@ -48,6 +48,7 @@ nav {
 .search {
     background: none;
     border: none;
+    z-index: 1000;
 }
 
 .search:hover {
@@ -76,11 +77,12 @@ nav {
 
 h1 {
     font-family: 'Merienda', cursive;
+    font-size: min(7vw, 48px);
 }
 
 label {
     font-family: 'Handlee', cursive;
-    font-size: 24px;
+    font-size: min(5vw, 24px);
 }
 
 h3 {
@@ -90,12 +92,12 @@ h3 {
 
 .nav-link {
     font-family: 'Handlee', cursive;
-    font-size: 20px;
+    font-size: min(4vw, 20px);
 }
 
 .navbar-brand {
     font-family: 'Dancing Script', cursive;
-    font-size: 32px;
+    font-size: min(5vw, 32px);
 }
 
 .navbar-toggler:focus {
