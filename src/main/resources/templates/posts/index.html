@@ -9,13 +9,13 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 <div class="container">
-    <div class="text-center mt-2"><h2>Recent Posts</h2></div>
+    <div class="text-center mt-2"><h1>Recent Posts</h1></div>
 
     <!-- TODO: limit recent posts to x-amount per page -->
     <div class="m-3 card rounded post p-2" th:each="post : ${posts}">
         <div class="card-body py-2">
             <a th:href="@{/posts/{post}(post=${post.id})}"><h3 class="m-0" th:text="${post.title}"></h3></a>
-            <small>posted by: <span th:text="${post.user.username}"></span></small>
+            <em><small>posted by: <span th:text="${post.user.username}"></span></small></em>
         </div>
         <div class="card-text bg-white mx-5 rounded my-1 pb-2" style="border: 2px solid var(--reddish)">
             <p class="p-2" th:text="${post.body}"></p>

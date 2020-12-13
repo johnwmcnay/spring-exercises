@@ -2,24 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:include="partials/partials :: head">
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Sign up</title>
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
+<div class="container">
+    <div class="text-center mt-2">
+        <h1>Create an account</h1>
+    </div>
 
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
+    <form th:action="@{/sign-up}" method="POST" th:object="${user}">
 
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-control" id="username" minlength="3" maxlength="15" th:field="*{username}"
+                   pattern="^[a-zA-Z][a-zA-Z0-9]+$" required>
+            <small>Between 3 and 15 characters, starting with a letter followed by any alphanumeric characters</small>
+        </div>
 
-    <input value="Sign me up!" type="submit" />
-</form>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" id="email" th:field="*{email}" type="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" id="password" type="password" th:field="*{password}" minlength="8"
+                   maxlength="24" required>
+            <small>Between 8 and 24 characters</small>
+        </div>
+
+        <input value="Sign me up!" type="submit"/>
+    </form>
+</div>
 </body>
 <footer th:include="partials/partials :: footer"></footer>
 </html>

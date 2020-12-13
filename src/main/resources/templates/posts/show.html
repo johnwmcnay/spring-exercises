@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:include="partials/partials :: head">
     <meta charset="UTF-8">
-    <title>Single Post</title>
+    <title>View Post</title>
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <!-- TODO: link to a user profile -->
-            <small >posted by: <span th:text="${user.username}"></span></small>
+            <em><small >posted by: <span th:text="${user.username}"></span></small></em>
         </div>
 
         <div class="bg-white mx-5 rounded my-1" style="border: 2px solid var(--reddish)">

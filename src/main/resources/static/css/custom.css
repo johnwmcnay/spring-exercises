@@ -73,3 +73,36 @@ nav {
     outline: none;
     box-shadow: none;
 }
+
+h1 {
+    font-family: 'Merienda', cursive;
+}
+
+label {
+    font-family: 'Handlee', cursive;
+    font-size: 24px;
+}
+
+h3 {
+    font-family: 'Handlee', cursive;
+    font-size: 24px;
+}
+
+.nav-link {
+    font-family: 'Handlee', cursive;
+    font-size: 20px;
+}
+
+.navbar-brand {
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler:hover {
+    color: midnightblue;
+}

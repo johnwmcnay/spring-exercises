@@ -6,31 +6,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/6fa36e9c98.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
+
 </head>
 <body>
-<nav class="navbar navbar-expand-lg row" th:fragment="navbar">
-
-    <div class="row col-6 align-items-center">
-        <a class="ml-3 navbar-brand" href="/posts">Another Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-expand-lg row justify-content-between" th:fragment="navbar">
+    <div class="row align-items-center ml-3">
+        <a class="navbar-brand" href="/posts">Another Blog</a>
         <form th:method="get" th:action="@{/posts}">
             <input class="m-0 rounded" type="text" name="search" placeholder="Search">
             <button class="search" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+    </button>
 
-
-    <div class="collapse navbar-collapse col-6 justify-content-end" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div class="navbar-nav mx-3">
             <a sec:authorize="!isAuthenticated()" class="nav-item nav-link" th:href="@{/sign-up}">Sign Up</a>
             <a sec:authorize="!isAuthenticated()" class="nav-item nav-link" th:href="@{/login}">Login</a>
-
-
 
             <span class="nav-item nav-link" sec:authorize="isAuthenticated()">Hello, <span th:text="${#authentication.principal.username}"></span>!</span>
             <a class="nav-item nav-link" sec:authorize="isAuthenticated()" th:href="@{/posts/create}">New Post <i class="fas fa-plus-circle"></i></a>
